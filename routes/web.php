@@ -14,8 +14,8 @@ use  App\Http\Controllers\StudentController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return redirect()->route('student.manage');
+})->name('welcome');
 
 Route::get('/student/index', [StudentController::class, 'index'])->name('student.manage');
 Route::get('/get-student-data', [StudentController::class, 'getTableData'])->name('get.student.data');
