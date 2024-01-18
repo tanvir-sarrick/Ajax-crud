@@ -10,6 +10,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <title>CRUD Using Ajax</title>
+
+    <style>
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-right: 10px; /* Adjust as needed */
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
   </head>
   <body>
     <br>
@@ -121,6 +139,17 @@
     <script>
         // Fetch and display table data
         function fetchTableData() {
+            //$('#dataTableBody').html('<tr><td colspan="5" style="text-align:center;">Loading...</td></tr>');
+            // Display loader
+            $('#dataTableBody').html(`
+                <tr id="loadingRow">
+                    <td colspan="3">
+                        <div class="loader"></div>
+                        Loading...
+                    </td>
+                </tr>
+            `);
+
             $.ajax({
                 type: 'GET',
                 url: '{{ route("get.student.data") }}',
